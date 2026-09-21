@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Ranking Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <section class="hero">
+            <p class="tag">ML • LEARNING TO RANK</p>
+            <h1>Search Ranking Model</h1>
+            <p class="subtitle">
+                Search results ranked by a LambdaMART machine-learning model.
+            </p>
+
+            <form action="/search-ui" method="get" class="search-box">
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    placeholder="Try: machine learning python"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        {% if query %}
+        <section class="results-header">
+            <h2>Results for "{{ query }}"</h2>
+            <span>{{ results|length }} results</span>
+        </section>
+
+        <section class="results">
+            {% for result in results %}
+            <article class="result-card">
+                <div class="result-number">{{ loop.index }}</div>
+                <div>
+                    <h3>{{ result.title }}</h3>
+                    <p>{{ result.content }}</p>
+                    <div class="meta">
+                        <span>ML relevance score: {{ result.score }}</span>
+                        <span>{{ result.doc_id }}</span>
+                    </div>
+                </div>
+            </article>
+            {% else %}
+            <div class="empty">No results found.</div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        <footer>
+            <span>LambdaMART</span>
+            <span>NDCG evaluation</span>
+            <span>FastAPI</span>
+        </footer>
+    </main>
+</body>
+</html>

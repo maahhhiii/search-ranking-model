@@ -1,0 +1,155 @@
+:root {
+    font-family: Inter, Arial, sans-serif;
+    color: #172033;
+    background: #f4f7fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: min(960px, 92%);
+    margin: 0 auto;
+    padding: 55px 0;
+}
+
+.hero {
+    background: white;
+    border-radius: 22px;
+    padding: 42px;
+    box-shadow: 0 12px 40px rgba(20, 30, 50, 0.08);
+}
+
+.tag {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    margin: 0 0 10px;
+    opacity: 0.65;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 58px);
+    margin: 0 0 12px;
+}
+
+.subtitle {
+    margin: 0 0 30px;
+    color: #657086;
+    font-size: 17px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    border: 1px solid #d9deea;
+    border-radius: 13px;
+    padding: 16px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #7b879d;
+}
+
+.search-box button {
+    border: 0;
+    border-radius: 13px;
+    padding: 0 25px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 34px 4px 15px;
+}
+
+.results-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.results-header span {
+    color: #657086;
+}
+
+.result-card {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    margin: 12px 0;
+    box-shadow: 0 7px 24px rgba(20, 30, 50, 0.06);
+}
+
+.result-number {
+    font-size: 20px;
+    font-weight: 800;
+    opacity: 0.45;
+}
+
+.result-card h3 {
+    margin: 0 0 8px;
+}
+
+.result-card p {
+    color: #5f6b80;
+    line-height: 1.6;
+    margin: 0 0 13px;
+}
+
+.meta {
+    display: flex;
+    gap: 18px;
+    font-size: 12px;
+    color: #7a8497;
+}
+
+.empty {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 35px 0;
+    color: #7a8497;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 27px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box button {
+        height: 48px;
+    }
+
+    .meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
