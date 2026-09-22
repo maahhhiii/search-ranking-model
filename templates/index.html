@@ -3,19 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Search Ranking Model</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='style.css') }}">
 </head>
+
 <body>
+
     <main class="container">
+
+        <!-- HERO SECTION -->
         <section class="hero">
-            <p class="tag">ML • LEARNING TO RANK</p>
-            <h1>Search Ranking Model</h1>
-            <p class="subtitle">
-                Search results ranked by a LambdaMART machine-learning model.
+
+            <p class="tag">
+                ML • LEARNING TO RANK
             </p>
 
-            <form action="/search-ui" method="get" class="search-box">
+            <h1>
+                Search Ranking Model
+            </h1>
+
+            <p class="subtitle">
+                Search results ranked using a
+                <strong>LambdaMART</strong> machine-learning model.
+            </p>
+
+            <!-- SEARCH FORM -->
+            <form action="/search-ui"
+                  method="get"
+                  class="search-box">
+
                 <input
                     type="text"
                     name="q"
@@ -24,40 +43,134 @@
                     autocomplete="off"
                     required
                 >
-                <button type="submit">Search</button>
+
+                <button type="submit">
+                    Search
+                </button>
+
             </form>
+
         </section>
 
+
+        <!-- RESULTS SECTION -->
         {% if query %}
+
         <section class="results-header">
-            <h2>Results for "{{ query }}"</h2>
-            <span>{{ results|length }} results</span>
+
+            <div>
+
+                <h2>
+                    Results for "{{ query }}"
+                </h2>
+
+                <p class="results-subtitle">
+                    Ranked using the trained LambdaMART model
+                </p>
+
+            </div>
+
+            <span class="result-count">
+                {{ results|length }} results
+            </span>
+
         </section>
+
 
         <section class="results">
+
             {% for result in results %}
+
             <article class="result-card">
-                <div class="result-number">{{ loop.index }}</div>
-                <div>
-                    <h3>{{ result.title }}</h3>
-                    <p>{{ result.content }}</p>
-                    <div class="meta">
-                        <span>ML relevance score: {{ result.score }}</span>
-                        <span>{{ result.doc_id }}</span>
-                    </div>
+
+                <!-- RESULT NUMBER -->
+                <div class="result-number">
+                    {{ loop.index }}
                 </div>
+
+
+                <!-- RESULT CONTENT -->
+                <div class="result-content">
+
+                    <h3>
+                        {{ result.title }}
+                    </h3>
+
+                    <p>
+                        {{ result.content }}
+                    </p>
+
+
+                    <!-- RESULT INFORMATION -->
+                    <div class="meta">
+
+                        <span class="score">
+
+                            Normalized relevance score:
+
+                            <strong>
+                                {{ "%.1f"|format(
+                                    result.relevance_score|float
+                                ) }}/100
+                            </strong>
+
+                        </span>
+
+
+                        <span class="document-id">
+                            {{ result.doc_id }}
+                        </span>
+
+                    </div>
+
+                </div>
+
             </article>
+
             {% else %}
-            <div class="empty">No results found.</div>
+
+            <!-- NO RESULTS -->
+            <div class="empty">
+
+                <h3>
+                    No results found
+                </h3>
+
+                <p>
+                    Try another search query.
+                </p>
+
+            </div>
+
             {% endfor %}
+
         </section>
+
         {% endif %}
 
+
+        <!-- FOOTER -->
         <footer>
-            <span>LambdaMART</span>
-            <span>NDCG evaluation</span>
-            <span>FastAPI</span>
+
+            <span>
+                LambdaMART
+            </span>
+
+            <span>
+                NDCG Evaluation
+            </span>
+
+            <span>
+                FastAPI
+            </span>
+
+            <span>
+                TF-IDF
+            </span>
+
         </footer>
+
     </main>
+
 </body>
 </html>

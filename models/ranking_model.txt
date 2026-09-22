@@ -6,31 +6,36 @@ label_index=0
 max_feature_idx=8
 objective=lambdarank
 feature_names=tfidf_similarity title_similarity query_term_coverage title_term_coverage exact_phrase_match query_length document_length title_length query_document_length_ratio
-feature_infos=none none none none none none none none none
-tree_sizes=223
+feature_infos=[0:0.47864444882945995] [0:0.78219370151347456] [0:1] [0:1] [0:1] [2:3] [7:16] [2:5] [0.125:0.42857142857142855]
+tree_sizes=871
 
 Tree=0
-num_leaves=1
+num_leaves=7
 num_cat=0
-split_feature=
-split_gain=
-threshold=
-decision_type=
-left_child=
-right_child=
-leaf_value=0
-leaf_weight=
-leaf_count=30
-internal_value=
-internal_weight=
-internal_count=
+split_feature=1 6 4 8 6 5
+split_gain=8.32548 2.19389 0.348844 0.0104202 0.000669005 4.44089e-16
+threshold=0.1220852512958731 12.500000000000002 1.0000000180025095e-35 0.18465909090909094 10.500000000000002 2.5000000000000004
+decision_type=2 2 2 2 2 2
+left_child=1 3 -2 -1 5 -5
+right_child=2 -3 -4 4 -6 -7
+leaf_value=-0.090221592253640848 0.049978066871983237 0.048771879419692042 0.099999999999999908 -0.09999999999999977 -0.097243039594536729 -0.099999999999999784
+leaf_weight=0.45800884813070331 0.51510440558195081 0.3123914562165736 1.0778496414422989 0.32846076041460015 0.30717939138412476 0.44725379347801208
+leaf_count=5 6 3 6 3 3 4
+internal_value=1.26338e-09 -0.0720495 0.0838247 -0.0965439 -0.0992179 -0.1
+internal_weight=3.44625 1.85329 1.59295 1.5409 1.08289 0.775715
+internal_count=30 18 12 15 10 7
 is_linear=0
-shrinkage=1
+shrinkage=0.05
 
 
 end of trees
 
 feature_importances:
+document_length=2
+title_similarity=1
+exact_phrase_match=1
+query_length=1
+query_document_length_ratio=1
 
 parameters:
 [boosting: gbdt]
@@ -41,9 +46,9 @@ parameters:
 [data_sample_strategy: bagging]
 [data: ]
 [valid: ]
-[num_iterations: 250]
+[num_iterations: 200]
 [learning_rate: 0.05]
-[num_leaves: 31]
+[num_leaves: 15]
 [num_threads: 8]
 [seed: 42]
 [deterministic: 0]
@@ -51,7 +56,7 @@ parameters:
 [force_row_wise: 0]
 [histogram_pool_size: -1]
 [max_depth: -1]
-[min_data_in_leaf: 20]
+[min_data_in_leaf: 3]
 [min_sum_hessian_in_leaf: 0.001]
 [bagging_fraction: 1]
 [pos_bagging_fraction: 1]
